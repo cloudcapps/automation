@@ -1,0 +1,11 @@
+---
+
+- name: "IP filter test"
+  hosts: usa
+
+  tasks:
+    - name: "IP addr filter stuff"
+      vars:
+        myip: "192.168.55.1"
+      debug:
+        msg:  "{{ myip | ipaddr }}"
