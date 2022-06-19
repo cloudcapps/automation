@@ -13,3 +13,7 @@ BGP:
       peer_asn: "661"
 
 eigrp_style: "named"
+
+eigrp:
+  asn: "1"
+  

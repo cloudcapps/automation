@@ -10,3 +10,6 @@ BGP:
       peer_asn: "12"
 
 eigrp_style: "normal"
+
+eigrp:
+  asn: "2"
