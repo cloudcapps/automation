@@ -8,4 +8,5 @@ BGP:
 
     - neighboor: "12.12.12.12"
       peer_asn: "12"
-      
+
+eigrp_style: "normal"

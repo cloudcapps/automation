@@ -11,3 +11,5 @@ BGP:
 
     - neighboor: "192.168.66.1"
       peer_asn: "661"
+
+eigrp_style: "named"
