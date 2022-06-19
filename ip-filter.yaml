@@ -6,6 +6,6 @@
   tasks:
     - name: "IP addr filter stuff"
       vars:
-        myip: "192.168.55.1"
+        myip: "192.168.99.1"
       debug:
         msg:  "{{ myip | ipaddr }}"
