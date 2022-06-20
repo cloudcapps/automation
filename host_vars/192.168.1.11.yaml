@@ -12,10 +12,13 @@ BGP:
     - neighbor: "192.168.66.1"
       peer_asn: "661"
 
-eigrp_style: "named"
-
 eigrp:
-  asn: "1"
+  asn: "45"
+  rid: "1.1.1.1"
+  networks:
+    - "10.0.0.0 0.0.0.255"
+    - "192.168.1.0 0.0.0.255"
+    - "1.1.1.1 0.0.0.0"
   
 ntp:
   servers:
