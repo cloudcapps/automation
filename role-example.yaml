@@ -12,7 +12,7 @@
 
     - name: "Task 2 - Print EIGRP config"
       debug:
-        msg: "{{ eigrp_result.command }}"
+        msg: "{{ eigrp_result.commands }}"
 
     - name: "Task 3 - Verify EIGRP"
       cisco.ios.ios_command:
