@@ -22,4 +22,4 @@
 
     - name: "Task 4 - Print show command"
       debug:
-        msg: "{{ eigrp_show_output }}"
+        msg: "{{ eigrp_show_output.stdout_lines }}"
