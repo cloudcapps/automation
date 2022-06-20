@@ -1,0 +1,12 @@
+---
+
+- name: "VyOS Playbook"
+  hosts: vyos
+  connection: network_cli
+
+  tasks:
+    - name: "Push some banner configuration to VyOS"
+      vyos.vyos.vyos_banner:
+        banner: pre-login
+        text: "CBT Nuggets banner for VyOS"
+        state: present
