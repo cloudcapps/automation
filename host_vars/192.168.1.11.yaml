@@ -17,3 +17,8 @@ eigrp_style: "named"
 eigrp:
   asn: "1"
   
+ntp:
+  servers:
+    - 1.1.1.1
+    - 3.3.3.3
+    - 5.5.5.5
