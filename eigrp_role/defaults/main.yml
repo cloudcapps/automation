@@ -6,4 +6,6 @@ task_two_name: "Printing some EIGRP config output"
 task_three_name: "Sending EIGRP show commands"
 task_four_name: "Printing Output of EIGRP show commands"
 
+show_commands: "show run | section eigrp"
+
 eigrp_template: "eigrp.j2"
