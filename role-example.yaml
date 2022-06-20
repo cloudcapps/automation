@@ -1,7 +1,7 @@
 ---
 
 - name: "Play to configure EIGRP"
-  host: 192.168.1.11
+  hosts: 192.168.1.11
   connection: network_cli
 
   tasks:
