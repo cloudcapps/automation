@@ -1,0 +1,24 @@
+---
+
+- name: "Testing Genie"
+  hosts: 192.168.1.11
+  connection: network_cli
+
+  tasks:
+    - name: "Task 1 - Send a show command"
+      cisco.ios.ios_command:
+        commands: "show ip route"
+      register: show_ip_route_output
+
+    - name: "Task 2 - Read in parse_genie role"
+      include_role:
+        name: clay584.parse_genie
+
+    - name: "Task 3 - Parse show command"
+      set_fact:
+        parsed_data: >-
+          {{ show_ip_route_output.stdout[0] | parse_genie(command='show ip route', os='iosxe') }}
+
+    - name: "Task 4 - Print output"
+      debug:
+        msg: "{{ parsed_data }}"
