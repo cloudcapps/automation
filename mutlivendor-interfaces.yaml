@@ -1,6 +1,6 @@
 ---
 
-- name: "Multivendor Fact-Gathering Playbook"
+- name: "Multivendor Interface Configuration"
   hosts: all
   connection: network_cli
 
@@ -35,6 +35,10 @@
         - name: eth3
           description: "Configured by Ansible"
           mtu: 1500
+        state: merged
+      register: vyos_facts
+      when: "ansible_network_os == 'vyos.vyos.vyos'"
+
 
     - name: "Print Cisco output"
       debug:
