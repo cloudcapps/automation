@@ -26,11 +26,11 @@
       vyos.vyos.vyos_interfaces:
         config:
         - name: eth2
-        description: "Configured by Ansible"
-        enabled: true
-        vifs:
-        - vlan_id: 200
-          description: "VIF 200 - ETH2"
+          description: "Configured by Ansible"
+          enabled: true
+          vifs:
+          - vlan_id: 200
+            description: "VIF 200 - ETH2"
 
         - name: eth3
           description: "Configured by Ansible"
