@@ -1,2 +1,3 @@
-super_secret_bgp: 5432
-ninja_ospf: 5
+ansible_user: "jcapps"
+ansible_password: "cisco"
+ansible_network_os: "cisco.ios.ios"
