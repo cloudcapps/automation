@@ -24,6 +24,6 @@
 
     - name: "Print VyOS output"
       debug:
-        msg: "{{ vyos_factsansible_facts.ansible_net_config[0].split(\n) }}"
+        msg: "{{ vyos_facts.ansible_facts.ansible_net_config[0].split(\n) }}"
       when: "ansible_network_os == 'vyos.vyos.vyos'"
       
