@@ -19,11 +19,11 @@
 
     - name: "Print Cisco output"
       debug:
-        msg: "{{ ios_facts.ansible_facts.ansible_net_config.split(\n) }}"
+        msg: "{{ ios_facts.ansible_facts.ansible_net_config.split('\n') }}"
       when: "ansible_network_os == 'cisco.ios.ios'"
 
     - name: "Print VyOS output"
       debug:
-        msg: "{{ vyos_facts.ansible_facts.ansible_net_config[0].split(\n) }}"
+        msg: "{{ vyos_facts.ansible_facts.ansible_net_config[0].split('\n') }}"
       when: "ansible_network_os == 'vyos.vyos.vyos'"
       
