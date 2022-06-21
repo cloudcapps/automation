@@ -1,0 +1,11 @@
+
+        - name: bond1
+          description: "Bond - 1"
+          mtu: 1200
+
+        - name: vti2
+          description: "VTI - 2"
+          enabled: false
+        state: merged
+      register: vyos_facts
+      when: "ansible_network_os == 'vyos.vyos.vyos'"
