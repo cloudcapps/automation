@@ -16,3 +16,14 @@
         gather_subset: config
       register: vyos_facts
       when: "ansible_network_os == 'vyos.vyos.vyos'"
+
+    - name: "Print Cisco output"
+      debug:
+        msg: "{{ ios_facts }}"
+      when: "ansible_network_os == 'cisco.ios.ios'"
+
+    - name: "Print VyOS output"
+      debug:
+        msg: "{{ vyos_facts }}"
+      when: "ansible_network_os == 'vyos.vyos.vyos'"
+      
