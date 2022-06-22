@@ -2,7 +2,7 @@
 
 ospf:
   default_originate: false
-  rid: 2.2.2.2
+  rid: "2.2.2.2"
   networks:
     - network: "10.1.2.0"
       wildcard: "0.0.0.255"
