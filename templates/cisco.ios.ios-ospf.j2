@@ -1,7 +1,7 @@
 router ospf 1
 router-id {{ ospf.rid }}
 {% for ntwk in ospf.networks %}
-  network {{ ntwk.network }} area {{ ntwk.area }}
+  network {{ ntwk.network }} {{ ntwk.wildcard }}area {{ ntwk.area }}
 {% endfor %}
 {% if ospf.default_originate == "true" %}
   default-information originate
