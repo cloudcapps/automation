@@ -28,3 +28,20 @@
       debug:
         msg: "{{ cisco_output }}"
       when: "ansible_network_os == 'cisco.ios.ios'"
+
+    - name: "Push Cisco VYOS Config"
+      vyos.vyos.vyos_ospfv2:
+        config:
+          areas:
+          - area_id: '0'
+            network:
+            - address: "10.2.0.0/16"
+            - address: "12.13.0.0/16"
+        state: merged
+      register: vyos_output
+      when: "ansible_network_os == 'vyos.vyos.vyos'"
+
+    - name: "Print Cisco VYOS Config"
+      debug:
+        msg: "{{ vyos_output }}"
+      when: "ansible_network_os == 'vyos.vyos.vyos'"
