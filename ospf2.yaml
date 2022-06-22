@@ -37,7 +37,7 @@
             network:
             - address: "10.2.0.0/16"
             - address: "12.13.0.0/16"
-        state: merged
+        state: replaced
       register: vyos_output
       when: "ansible_network_os == 'vyos.vyos.vyos'"
 
