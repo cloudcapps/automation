@@ -29,7 +29,7 @@
         msg: "{{ cisco_output }}"
       when: "ansible_network_os == 'cisco.ios.ios'"
 
-    - name: "Push Cisco VYOS Config"
+    - name: "Push VyOS OSPF Config"
       vyos.vyos.vyos_ospfv2:
         config:
           areas:
@@ -41,7 +41,7 @@
       register: vyos_output
       when: "ansible_network_os == 'vyos.vyos.vyos'"
 
-    - name: "Print Cisco VYOS Config"
+    - name: "Print VyOS OSPF Config"
       debug:
         msg: "{{ vyos_output }}"
       when: "ansible_network_os == 'vyos.vyos.vyos'"
