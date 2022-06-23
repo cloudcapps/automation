@@ -15,9 +15,9 @@
           - neighbor: "{{ item.neighbor }}"
             remote_as: "{{ item.peer_asn }}"
         operation: merge
-        register: cisco_output
-        when: "ansible_network_os == 'cisco.ios.ios'"
-        loop: "{{ bgp.neighbors }}"
+      register: cisco_output
+      when: "ansible_network_os == 'cisco.ios.ios'"
+      loop: "{{ bgp.neighbors }}"
 
     - name: "Print Cisco BGP Config"
       debug:
