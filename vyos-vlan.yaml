@@ -13,7 +13,7 @@
             interfaces: eth1
             state: present
           - vlan_id: 33
-            name: vlan-42
+            name: vlan-33
             interfaces: eth2
             state: present
           - vlan_id: 42
