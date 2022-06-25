@@ -9,11 +9,11 @@
         filter:
           - "ansible_date_time"
           
-    - name: "Recording Variable"
+    - name: "Recording date variable"
       set_fact:
         TD: "{{ ansible_date_time.date }}"
 
-    - name: "Creating directories"
+    - name: "Creating backup directories"
       file:
         path: "backups/{{ TD }}"
         state: directory
@@ -33,6 +33,14 @@
         filter: ["config"]
       register: result
 
-    - name: "Print stuff"
-      debug:
-        msg: "{{ result }}"
+    - name: "Create startup config subdirectory"
+      file:
+        path: "backups/{{ hostvars.localhost.TD }}/startup-config"
+        state: directory
+      run_once: true
+
+    - name: "Create running config subdirectory"
+      file:
+        path: "backups/{{ hostvars.localhost.TD }}/running-config"
+        state: directory
+      run_once: true
