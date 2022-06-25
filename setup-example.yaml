@@ -6,10 +6,15 @@
   tasks:
     - name: "Collect facts about localhost"
       ansible.builtin.setup:
-        gather_subset:
-          - "min"
-      register: output
+        filter:
+          - "ansible_date_time"
+          
+    - name: "Recording Variable"
+      set_fact:
+        TD: "{{ ansible_date_time.date }}"
 
-    - name: "Print Stuff"
-      debug: 
-        msg: "{{ output }}"
+    - name: "Creating directories"
+      file:
+        path: "backups/{{ TD }}"
+        state: directory
+      run_once: true
