@@ -1,0 +1,14 @@
+---
+- name: "Test Playbook"
+  hosts: localhost
+
+  tasks::
+    - name: "Collect facts about localhost"
+      ansible_builtin.setup:
+        gather_subset:
+          - "min"
+      register: output
+
+    - name: "Print Stuff"
+      debug: 
+        msg: "{{ output }}"
