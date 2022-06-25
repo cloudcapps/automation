@@ -48,9 +48,9 @@
     - name: "Task 4: Copy startup-config to disk"
       copy:
         content: "{{ result.ansible_facts.napalm_config.startup }}"
-        dest: "backups/{{ hostvars.localhost.TD }}/startup-config/{{ inventory_hostname }}"
+        dest: "backups/{{ hostvars.localhost.TD }}/startup-config/{{ inventory_hostname}}-startup-config.txt"
 
     - name: "Task 5: Copy running-config to disk"
       copy:
         content: "{{ result.ansible_facts.napalm_config.running }}"
-        dest: "backups/{{ hostvars.localhost.TD }}/running-config/{{ inventory_hostname }}"
+        dest: "backups/{{ hostvars.localhost.TD }}/running-config/{{ inventory_hostname }}-running-config.txt"
