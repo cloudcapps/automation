@@ -8,10 +8,10 @@
     - name: "Push Cisco BGP Config"
       cisco.ios.ios_l2_interfaces:
         config:
-        - name: {{ item.interface }}
+        - name: "{{ item.interface }}"
           mode: access
           access:
-            vlan: {{ item.vlan }}
+            vlan: "{{ item.vlan }}"
         state: merged
       register: cisco_output
       loop: "{{ vlans.interfaces }}"
