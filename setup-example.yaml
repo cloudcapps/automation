@@ -2,7 +2,7 @@
 - name: "Test Playbook"
   hosts: localhost
 
-  tasks::
+  tasks:
     - name: "Collect facts about localhost"
       ansible_builtin.setup:
         gather_subset:
