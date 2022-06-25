@@ -1,0 +1,38 @@
+---
+
+- name: "Play 1: Creating backups directories"
+  hosts: localhost
+
+  tasks:
+    - name: "Collect facts about localhost"
+      ansible.builtin.setup:
+        filter:
+          - "ansible_date_time"
+          
+    - name: "Recording Variable"
+      set_fact:
+        TD: "{{ ansible_date_time.date }}"
+
+    - name: "Creating directories"
+      file:
+        path: "backups/{{ TD }}"
+        state: directory
+      run_once: true
+
+- name: "Play 2: Backing up configurations"
+  hosts: cisco
+  connection: network_cli
+
+  tasks:
+    - name: "Pull configurations from devices"
+      napalm_get_facts:
+        hostname: "{{ ansible_host }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        dev_os: "{{ napalm_platform }}"
+        filter: ["config"]
+      register: result
+
+    - name: "Print stuff"
+      debug:
+        msg: "{{ result }}"
