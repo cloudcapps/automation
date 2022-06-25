@@ -5,7 +5,7 @@
   connection: network_cli
 
   tasks:
-    - name: "Push Cisco BGP Config"
+    - name: "Push Cisco VLAN Config"
       cisco.ios.ios_vlans:
         config:
         - name: FIVE
@@ -19,6 +19,6 @@
         state: merged
       register: cisco_output
 
-    - name: "Print Cisco BGP Config"
+    - name: "Print Cisco VLAN Config"
       debug:
         msg: "{{ cisco_output }}"
