@@ -2,5 +2,5 @@ ansible_user: "jcapps"
 ansible_password: "arista"
 ansible_network_os: "arista.eos.eos"
 napalm_platform: "eos"
-ansible_connection: httpapi
-ansible_httpapi_use_ssl: no
+ansible_connection: httpsapi
+ansible_httpapi_use_ssl: yes
