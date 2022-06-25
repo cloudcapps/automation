@@ -15,7 +15,7 @@
           - vlan_id: 33
             name: vlan-33
             interfaces: eth2
-            state: merge
+            state: present
           - vlan_id: 42
             name: vlan-42
             interfaces: eth3
