@@ -4,16 +4,16 @@
   hosts: localhost
 
   tasks:
-    - name: "Collect facts about localhost"
+    - name: "Task 1: Collect facts about localhost"
       ansible.builtin.setup:
         filter:
           - "ansible_date_time"
           
-    - name: "Recording date variable"
+    - name: "Task 2: Recording date variable"
       set_fact:
         TD: "{{ ansible_date_time.date }}"
 
-    - name: "Creating backup directories"
+    - name: "Task 3: Creating backup directories"
       file:
         path: "backups/{{ TD }}"
         state: directory
@@ -24,7 +24,7 @@
   connection: network_cli
 
   tasks:
-    - name: "Pull configurations from devices"
+    - name: "Task 1: Pull configurations from devices"
       napalm_get_facts:
         hostname: "{{ ansible_host }}"
         username: "{{ ansible_user }}"
@@ -33,14 +33,24 @@
         filter: ["config"]
       register: result
 
-    - name: "Create startup config subdirectory"
+    - name: "Task 2: Create startup config subdirectory"
       file:
         path: "backups/{{ hostvars.localhost.TD }}/startup-config"
         state: directory
       run_once: true
 
-    - name: "Create running config subdirectory"
+    - name: "Task 3: Create running config subdirectory"
       file:
         path: "backups/{{ hostvars.localhost.TD }}/running-config"
         state: directory
       run_once: true
+
+    - name: "Task 4: Copy startup-config to disk"
+      copy:
+        content: "{{ result.ansible_facts.napalm_config.startup }}"
+        dest: "backups/{{ hostvars.localhost.TD }}/startup-config/{{ inventory_hostname }}"
+
+    - name: "Task 5: Copy running-config to disk"
+      copy:
+        content: "{{ result.ansible_facts.napalm_config.running }}"
+        dest: "backups/{{ hostvars.localhost.TD }}/running-config/{{ inventory_hostname }}"
