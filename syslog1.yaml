@@ -29,8 +29,8 @@
 
   - name: "Print Task 1"
     debug:
-      msg: "{{ task1_output }}"
+      msg: "{{ task1_output.results }}"
 
   - name: "Print Task 2"
     debug:
-      msg: "{{ task2_output }}"
+      msg: "{{ task2_output.results }}"
