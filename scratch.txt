@@ -1,0 +1,18 @@
+hostname R4
+no ip domain-lookup
+ip domain-name cappshome.net
+crypto key generate rsa modulus 2048
+username jcapps privilege 15 secret cisco
+
+interface GigabitEthernet0/0
+ ip address 192.168.1.14 255.255.255.0
+ no shutdown
+
+ip route 0.0.0.0 0.0.0.0 192.168.1.1
+
+line con 0
+ logging synchronous
+
+line vty 0 14
+ login local
+ transport input ssh

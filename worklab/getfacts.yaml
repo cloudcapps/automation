@@ -1,0 +1,17 @@
+---
+
+- name: "Multivendor Fact-Gathering Playbook"
+  hosts: all
+  connection: network_cli
+
+  tasks:
+    - name: "Pull Cisco facts"
+      cisco.ios.ios_facts:
+        gather_subset: config
+      register: ios_facts
+      when: "ansible_network_os == 'cisco.ios.ios'"
+
+    - name: "Print Cisco output"
+      debug:
+        msg: "{{ ios_facts.ansible_facts.ansible_net_config.split('\n') }}"
+      when: "ansible_network_os == 'cisco.ios.ios'"
