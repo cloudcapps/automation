@@ -1,0 +1,16 @@
+---
+
+- name: "Play 1s"
+  hosts: localhost
+
+  tasks: 
+    - name: "Collect date info"
+      ansible.builtin.setup:
+        filter:
+          - "ansible_date_time"
+
+    - name: "Save info as variable"
+      set_fact:
+        TD: "{{ ansible_date_time.date }}"
+
+    

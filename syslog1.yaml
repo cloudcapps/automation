@@ -1,0 +1,48 @@
+---
+- name: "Play 1: Cisco Devices"
+  hosts: cisco
+  connection: network_cli
+
+  tasks:
+  - name: "Apply the provided configuration"
+    cisco.ios.ios_logging_global:
+      config:
+        buffered:
+          severity: notifications
+          size: 5099
+          xml: True
+        console:
+          severity: critical
+          xml: True
+        facility: local5
+        hosts:
+          - hostname: 172.16.1.12
+          - hostname: 172.16.1.11
+            xml: True
+          - hostname: 172.16.1.10
+            filtered: True
+            stream: 10
+          - hostname: 172.16.1.13
+            transport:
+              tcp:
+                port: 514
+        monitor:
+          severity: warnings
+        message_counter: log
+        snmp_trap:
+          - errors
+        trap: errors
+        userinfo: True
+        policy_firewall:
+          rate_limit: 10
+        logging_on: enable
+        exception: 4099
+        dmvpn:
+          rate_limit: 10
+        cns_events: warnings
+      state: merged
+    register: cisco_output
+
+  - name:
+    debug:
+      msg: "{{ cisco_output }}"
