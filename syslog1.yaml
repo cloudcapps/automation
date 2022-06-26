@@ -7,42 +7,30 @@
   - name: "Apply the provided configuration"
     cisco.ios.ios_logging_global:
       config:
-        buffered:
-          severity: notifications
-          size: 5099
-          xml: True
-        console:
-          severity: critical
-          xml: True
-        facility: local5
         hosts:
-          - hostname: 172.16.1.12
-          - hostname: 172.16.1.11
-            xml: True
-          - hostname: 172.16.1.10
-            filtered: True
-            stream: 10
-          - hostname: 172.16.1.13
+          - hostname: "{{ item.ip }}"
+      state: merged
+    loop: "{{ syslog.hosts }}"
+    when: item.port is not defined
+    register: task1_output
+
+  - name: 
+    cisco.ios.ios_logging_global:
+      config:
+        hosts:
+          - hostname: "{{ item.ip }}"
             transport:
               tcp:
-                port: 514
-        monitor:
-          severity: warnings
-        message_counter: log
-        snmp_trap:
-          - errors
-        trap: errors
-        userinfo: True
-        policy_firewall:
-          rate_limit: 10
-        logging_on: enable
-        exception: 4099
-        dmvpn:
-          rate_limit: 10
-        cns_events: warnings
+                port: "{{ item.port }}"
       state: merged
-    register: cisco_output
+    loop: "{{ syslog.hosts }}"
+    when: item.port is defined
+    register: task2_output
 
-  - name:
+  - name: "Print Task 1"
     debug:
-      msg: "{{ cisco_output }}"
+      msg: "{{ task1_output }}"
+
+  - name: "Print Task 2"
+    debug:
+      msg: "{{ task2_output }}"
